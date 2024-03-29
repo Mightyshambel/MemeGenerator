@@ -3,7 +3,7 @@ import React from "react";
 export default function Form() {
 
 
-  const [memeImage, setMemeImage] = React.useState("")
+  const [memeImage, setMemeImage] = React.useState("http://i.imgflip.com/1bij.jpg")
   
   function generateMeme() {
     const memesArray = memesData.data.memes;
@@ -59,7 +59,7 @@ export default function Form() {
           </button>
         </div>
       </div>
-      <img src={memeImage} />
+      <img className="flex justify-center px-60 py-20" src={memeImage} />
     </div>
   );
 }
