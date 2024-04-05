@@ -5,17 +5,21 @@ export default function Form() {
 
 
   const [meme, setMeme] = React.useState({
-    topText="",
-    bottomText="",
-    randomImage="http://i.imgflip.com/1bij.jpg",
+    topText:"",
+    bottomText:"",
+    randomImage:"http://i.imgflip.com/1bij.jpg",
   })
 
   const [allMemeImages, setAllMemeImages] = React.useState(memesData)
   
   function generateMeme() {
-    const memesArray = memesData.data.memes;
+    const memesArray = allMemeImages.data.memes;
     const randomNumber = Math.floor(Math.random() * memesArray.length);
-    setMeme(memesArray[randomNumber].url)
+    const url = memesArray[randomNumber].url;
+    setMeme(prevMeme => ({
+      ...prevMeme,
+      randomImage:url
+    }))
 
   }
 
@@ -66,7 +70,7 @@ export default function Form() {
           </button>
         </div>
       </div>
-      <img className="flex justify-center px-60 py-20" src={memeImage} />
+      <img className="flex justify-center px-60 py-20" src={meme.randomImage} />
     </div>
   );
 }
