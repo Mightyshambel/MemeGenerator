@@ -23,6 +23,17 @@ export default function Form() {
 
   }
 
+  function handleChange(event) {
+     const {value,name}= event.target
+    return(
+      setMeme(prevMeme => ({
+        ...prevMeme,
+          [name]:value
+      })
+      )
+    )
+  }
+
   return (
     <div>
       <div class="">
@@ -37,6 +48,9 @@ export default function Form() {
             <input
               type="top-text"
               id="top-text"
+              name="topText"
+              value={meme.topText}
+              onChange={handleChange}
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Shut up"
               required
@@ -53,6 +67,9 @@ export default function Form() {
             <input
               type="bottom-text"
               id="bottom-text"
+              name="bottomText"
+              value={meme.bottomText}
+              onChange={handleChange}
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               placeholder="Take my money"
               required
@@ -70,7 +87,12 @@ export default function Form() {
           </button>
         </div>
       </div>
-      <img className="flex justify-center px-60 py-20" src={meme.randomImage} />
+      <div className="relative mx-96 my-10">
+      <h2 className="absolute text-white font-semibold text-2xl p-5">{meme.topText}</h2>
+      <img className="flex justify-center " src={meme.randomImage} />
+      <h2 className="absolute text-black font-semibold text-2xl  ">{meme.bottomText}</h2>
+      </div>
+      
     </div>
   );
 }
